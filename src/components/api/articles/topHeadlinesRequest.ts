@@ -2,7 +2,7 @@ import ApiRequest from '../apiRequest';
 import { Category, Country, Endpoint } from '../utils/types';
 
 class TopHeadlinesRequest implements ApiRequest {
-  endpoint: Endpoint;
+  readonly endpoint: Endpoint;
 
   options: {
     // The 2-letter ISO 3166-1 code of the country you want to get headlines for. Possible options: aearataubebgbrcachcncocuczdeegfrgbgrhkhuidieilinitjpkrltlvmamxmyngnlnonzphplptrorsrusasesgsiskthtrtwuausveza.

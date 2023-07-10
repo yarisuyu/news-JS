@@ -3,7 +3,7 @@ import { Category, Country, Language } from "../utils/types";
 import { Endpoint } from '../utils/types';
 
 class SourceRequest implements ApiRequest {
-  endpoint: Endpoint;
+  readonly endpoint: Endpoint;
   options: {
     // Find sources that display news of this category. Default: all categories.
     category?: Category;

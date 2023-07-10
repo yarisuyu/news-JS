@@ -2,7 +2,7 @@ import ApiRequest from "../apiRequest";
 import { Language, Endpoint, SortBy, SearchIn } from "../utils/types";
 
 class EverythingRequest implements ApiRequest {
-  endpoint: Endpoint;
+  readonly endpoint: Endpoint;
 
   options: {
     // Keywords or phrases to search for in the article title and body.
