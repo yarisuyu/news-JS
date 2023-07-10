@@ -17,14 +17,27 @@ class AppController extends AppLoader {
     getNews(e: Event, callback: responseCallback<EverythingResponse>) {
         let target = e.target as Element;
         const newsContainer = e.currentTarget as Element;
+        const savedSourceId = localStorage.getItem('currentSource');
 
-        while (target !== newsContainer) {
-            if (target.classList.contains('source__item')) {
-                const sourceId = target.getAttribute('data-source-id');
+        while (target !== newsContainer || target.id === 'search') {
+            if (target.classList.contains('source__item') || savedSourceId) {
+                let sourceId = target.getAttribute('data-source-id');
+                if (sourceId && sourceId !== savedSourceId) {
+                    localStorage.setItem('currentSource', sourceId);
+                } else {
+                    sourceId = savedSourceId;
+                }
+
                 if (sourceId && newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
+                    const searchField = document?.getElementById('search') as HTMLInputElement;
+                    const request = new EverythingRequest({ sources: sourceId });
+                    if (searchField?.value) {
+                        console.log(searchField?.value);
+                        request.options.q = searchField?.value;
+                    }
                     super.getResp(
-                        new EverythingRequest({ sources: sourceId }),
+                        request,
                         callback as responseCallback<ApiResponse>,
                     );
                 }

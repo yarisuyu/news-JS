@@ -1,6 +1,3 @@
-import ApiResponse from '../api/apiResponse';
-import TopHeadlinesResponse from '../api/articles/topHeadlinesResponse';
-import SourceResponse from '../api/sources/sourceResponse';
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
 
@@ -14,6 +11,8 @@ class App {
     }
 
     start() {
+        const searchField = document?.getElementById('search');
+        searchField?.addEventListener('search', (e) => this.controller.getNews(e, (response) => { this.view.drawNews(response); }));
         document
             ?.querySelector('.sources')
             ?.addEventListener('click', (e) => this.controller.getNews(e, (response) => { this.view.drawNews(response); }));
