@@ -1,7 +1,6 @@
-import ApiRequest from '../api/apiRequest';
 import ApiResponse from '../api/apiResponse';
-import TopHeadlinesResponse from '../api/articles/topHeadlinesResponse';
 import EverythingRequest from '../api/everything/everythingRequest';
+import EverythingResponse from '../api/everything/everythingResponse';
 import SourceRequest from '../api/sources/sourceRequest';
 import SourceResponse from '../api/sources/sourceResponse';
 import { responseCallback } from '../api/utils/types';
@@ -15,7 +14,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: responseCallback<TopHeadlinesResponse>) {
+    getNews(e: Event, callback: responseCallback<EverythingResponse>) {
         let target = e.target as Element;
         const newsContainer = e.currentTarget as Element;
 

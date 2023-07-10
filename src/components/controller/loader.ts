@@ -1,10 +1,10 @@
 import ApiRequest from "../api/apiRequest";
 import ApiResponse from "../api/apiResponse";
-import { responseCallback } from "../api/utils/types";
+import { responseCallback, Endpoint } from "../api/utils/types";
 
 class Loader {
-    baseLink: string;
-    options: {};
+    private baseLink: string;
+    private options: {};
 
     constructor(baseLink: string, options: {}) {
         this.baseLink = baseLink;
@@ -20,7 +20,7 @@ class Loader {
         this.load('GET', request.endpoint, callback, request.options);
     }
 
-    errorHandler(res: Response) {
+    private errorHandler(res: Response) {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -30,7 +30,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: {}, endpoint: Endpoint) {
+    private makeUrl(options: {}, endpoint: Endpoint) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -41,7 +41,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: Endpoint, callback: responseCallback<ApiResponse>, options = {}) {
+    private load(method: string, endpoint: Endpoint, callback: responseCallback<ApiResponse>, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

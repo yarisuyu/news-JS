@@ -1,5 +1,6 @@
 import ApiRequest from "../apiRequest";
 import { Category, Country, Language } from "../utils/types";
+import { Endpoint } from '../utils/types';
 
 class SourceRequest implements ApiRequest {
   endpoint: Endpoint;
@@ -15,7 +16,7 @@ class SourceRequest implements ApiRequest {
   };
 
   constructor() {
-    this.endpoint = 'sources';
+    this.endpoint = Endpoint.SOURCES;
     this.options = { };
   }
 };

@@ -1,7 +1,9 @@
 import ApiRequest from '../apiRequest';
-import { Category, Country } from '../utils/types';
+import { Category, Country, Endpoint } from '../utils/types';
 
-interface TopHeadlinesRequest extends ApiRequest {
+class TopHeadlinesRequest implements ApiRequest {
+  endpoint: Endpoint;
+
   options: {
     // The 2-letter ISO 3166-1 code of the country you want to get headlines for. Possible options: aearataubebgbrcachcncocuczdeegfrgbgrhkhuidieilinitjpkrltlvmamxmyngnlnonzphplptrorsrusasesgsiskthtrtwuausveza.
     // Note: you can't mix this param with the sources param.
@@ -23,6 +25,11 @@ interface TopHeadlinesRequest extends ApiRequest {
     //  Use this to page through the results if the total results found is greater than the page size.
     page?: number;
   };
+
+  constructor(options: { sources: string }) {
+    this.options = options;
+    this.endpoint = Endpoint.TOP_HEADLINES;
+  }
 };
 
 export default TopHeadlinesRequest;

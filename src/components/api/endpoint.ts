@@ -1,1 +1,0 @@
-type Endpoint = 'sources' | 'news' | 'everything';

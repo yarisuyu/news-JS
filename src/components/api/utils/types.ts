@@ -9,5 +9,23 @@ type Country = 'ae' | 'ar' | 'at' | 'au' | 'be' | 'bg' | 'br' | 'ca' | 'ch' | 'c
 
 type responseCallback<T extends ApiResponse> = (response?: T) => void;
 
-export { Category, Language, Country, responseCallback };
+enum Endpoint {
+  SOURCES = "sources",
+  TOP_HEADLINES = "top-headlines",
+  EVERYTHING = "everything",
+};
+
+enum SortBy {
+  RELEVANCY = 'relevancy',
+  POPULARITY = 'popularity',
+  PUBLISHED_AT = 'publishedAt',
+}
+
+enum SearchIn {
+  TITLE = 'title',
+  DESCRIPTION = 'description',
+  CONTENT = 'content',
+}
+
+export { Category, Language, Country, responseCallback, Endpoint, SortBy, SearchIn };
 
