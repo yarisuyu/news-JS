@@ -1,4 +1,10 @@
+.news {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .news__item {
+    min-width: 20vw;
     display: flex;
     flex-direction: column;
     margin: 1rem auto;
@@ -124,7 +130,7 @@
 @media (min-width: 640px) {
     .news__item {
         flex-direction: row;
-        max-width: 700px;
+        max-width: 600px;
     }
 
     .news__item .news__meta {
