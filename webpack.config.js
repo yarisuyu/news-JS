@@ -8,12 +8,20 @@ const baseConfig = {
     mode: 'development',
     module: {
         rules: [
-            { test: /\.tsx?$/, loader: 'ts-loader' },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+            },
             { test: /\.js$/, loader: 'source-map-loader' },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                 test: /\.(jpg|png|svg)$/,
+                 type: 'asset/resource',
+             },
         ],
     },
     resolve: {
@@ -21,7 +29,8 @@ const baseConfig = {
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, './dist'),
+        assetModuleFilename: '[path]/[hash][ext][query]',
     },
     devtool: 'source-map',
     plugins: [
