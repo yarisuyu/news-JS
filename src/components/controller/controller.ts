@@ -17,24 +17,26 @@ class AppController extends AppLoader {
     getNews(e: Event, callback: responseCallback<EverythingResponse>) {
         let target = e.target as Element;
         const newsContainer = e.currentTarget as Element;
-        const savedSourceId = localStorage.getItem('currentSource');
+        const searchField = document?.getElementById('search') as HTMLInputElement;
+        let searchText;
+        if (searchField?.value) {
+            searchText = searchField?.value.trim();
+        }
 
-        while (target !== newsContainer || target.id === 'search') {
-            if (target.classList.contains('source__item') || savedSourceId) {
-                let sourceId = target.getAttribute('data-source-id');
-                if (sourceId && sourceId !== savedSourceId) {
-                    localStorage.setItem('currentSource', sourceId);
-                } else {
-                    sourceId = savedSourceId;
+        while (target !== newsContainer || target?.id === 'search') {
+            if (target?.classList?.contains('source__item') || target?.id === 'search') {
+                let sourceId = target?.getAttribute('data-source-id');
+                const previousSourceId = newsContainer?.getAttribute('data-source');
+
+                if (target?.id === 'search') {
+                    sourceId = previousSourceId;
                 }
 
-                if (sourceId && newsContainer.getAttribute('data-source') !== sourceId) {
-                    newsContainer.setAttribute('data-source', sourceId);
-                    const searchField = document?.getElementById('search') as HTMLInputElement;
+                if (sourceId && previousSourceId !== sourceId) {
+                    newsContainer?.setAttribute('data-source', sourceId);
                     const request = new EverythingRequest({ sources: sourceId });
-                    if (searchField?.value) {
-                        console.log(searchField?.value);
-                        request.options.q = searchField?.value;
+                    if (searchText) {
+                        request.options.q = searchText;
                     }
                     super.getResp(
                         request,
@@ -43,7 +45,7 @@ class AppController extends AppLoader {
                 }
                 return;
             }
-            target = target.parentNode as HTMLElement;
+            target = target?.parentNode as HTMLElement;
         }
     }
 }
