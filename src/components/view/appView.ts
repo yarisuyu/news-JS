@@ -1,4 +1,4 @@
-import TopHeadlinesResponse from '../api/articles/topHeadlinesResponse';
+import EverythingResponse from '../api/everything/everythingResponse';
 import SourceResponse from '../api/sources/sourceResponse';
 import News from './news/news';
 import Sources from './sources/sources';
@@ -12,7 +12,7 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data?: TopHeadlinesResponse) {
+    drawNews(data?: EverythingResponse) {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
