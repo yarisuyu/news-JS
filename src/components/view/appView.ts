@@ -3,9 +3,9 @@ import SourceResponse from '../api/sources/sourceResponse';
 import News from './news/news';
 import Sources from './sources/sources';
 
-export class AppView {
-    news: News;
-    sources: Sources;
+class AppView {
+    private news: News;
+    private sources: Sources;
 
     constructor() {
         this.news = new News();

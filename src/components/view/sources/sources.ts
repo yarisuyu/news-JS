@@ -1,11 +1,10 @@
-import { TemplateLiteral } from 'typescript';
 import Source from '../../api/sources/source';
 import './sources.css';
 
 class Sources {
     draw(data: Array<Source>) {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
+        const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
 
         data.forEach((item: Source) => {
             const sourceClone = sourceItemTemp?.content.cloneNode(true) as HTMLElement;
