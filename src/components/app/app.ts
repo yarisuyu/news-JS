@@ -11,6 +11,7 @@ class App {
     }
 
     start() {
+        localStorage.clear();
         const searchField = document?.getElementById('search');
         searchField?.addEventListener('search', (e) => this.controller.getNews(e, (response) => { this.view.drawNews(response); }));
         document

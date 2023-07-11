@@ -26,13 +26,17 @@ class AppController extends AppLoader {
         while (target !== newsContainer || target?.id === 'search') {
             if (target?.classList?.contains('source__item') || target?.id === 'search') {
                 let sourceId = target?.getAttribute('data-source-id');
-                const previousSourceId = newsContainer?.getAttribute('data-source');
+                const previousSourceId = localStorage.getItem('currentSourceId');
+                let isSearchClick;
 
                 if (target?.id === 'search') {
+                    isSearchClick = true;
                     sourceId = previousSourceId;
+                } else if (sourceId && previousSourceId !== sourceId) {
+                    localStorage.setItem('currentSourceId', sourceId);
                 }
 
-                if (sourceId && previousSourceId !== sourceId) {
+                if (sourceId && (previousSourceId !== sourceId || isSearchClick)) {
                     newsContainer?.setAttribute('data-source', sourceId);
                     const request = new EverythingRequest({ sources: sourceId });
                     if (searchText) {
