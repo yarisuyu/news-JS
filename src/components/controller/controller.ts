@@ -34,6 +34,13 @@ class AppController extends AppLoader {
                     sourceId = previousSourceId;
                 } else if (sourceId && previousSourceId !== sourceId) {
                     localStorage.setItem('currentSourceId', sourceId);
+                    if (target.parentElement) {
+                        const prevCurrent =
+                            Array.from(target.parentElement.children)
+                                .filter((item) => item.classList.contains('current'));
+                        prevCurrent.forEach((item) => item.classList.remove('current'));
+                    }
+                    target.classList.add('current');
                 }
 
                 if (sourceId && (previousSourceId !== sourceId || isSearchClick)) {
