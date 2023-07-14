@@ -20,7 +20,7 @@ class News {
 
             (newsClone.querySelector('.news__meta-photo') as HTMLElement).style.backgroundImage = `url(${
                 item.urlToImage || 'img/news_placeholder.jpg'
-                })`;
+            })`;
 
             const author = newsClone.querySelector('.news__meta-author');
             if (author) {
@@ -29,11 +29,7 @@ class News {
 
             const date = newsClone.querySelector('.news__meta-date');
             if (date) {
-                date.textContent = item.publishedAt
-                    .slice(0, 10)
-                    .split('-')
-                    .reverse()
-                    .join('-');
+                date.textContent = item.publishedAt.slice(0, 10).split('-').reverse().join('-');
             }
 
             const descTitle = newsClone.querySelector('.news__description-title');

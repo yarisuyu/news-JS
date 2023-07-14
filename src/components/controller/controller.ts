@@ -8,10 +8,7 @@ import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
     getSources(callback: responseCallback<SourceResponse>) {
-        super.getResp(
-            new SourceRequest(),
-            callback as responseCallback<ApiResponse>,
-        );
+        super.getResp(new SourceRequest(), callback as responseCallback<ApiResponse>);
     }
 
     getNews(e: Event, callback: responseCallback<EverythingResponse>) {
@@ -35,9 +32,9 @@ class AppController extends AppLoader {
                 } else if (sourceId && previousSourceId !== sourceId) {
                     localStorage.setItem('currentSourceId', sourceId);
                     if (target.parentElement) {
-                        const prevCurrent =
-                            Array.from(target.parentElement.children)
-                                .filter((item) => item.classList.contains('current'));
+                        const prevCurrent = Array.from(target.parentElement.children).filter((item) =>
+                            item.classList.contains('current')
+                        );
                         prevCurrent.forEach((item) => item.classList.remove('current'));
                     }
                     target.classList.add('current');
@@ -49,10 +46,7 @@ class AppController extends AppLoader {
                     if (searchText) {
                         request.options.q = searchText;
                     }
-                    super.getResp(
-                        request,
-                        callback as responseCallback<ApiResponse>,
-                    );
+                    super.getResp(request, callback as responseCallback<ApiResponse>);
                 }
                 return;
             }
